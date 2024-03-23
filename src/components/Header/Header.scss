@@ -1,0 +1,60 @@
+.header {
+  display: flex;
+  align-items: center;
+
+  justify-content: space-around;
+  padding-top: 50px;
+  padding-bottom: 25px;
+}
+/* Title BHA Buy House Appliance */
+.bha_acr {
+  font-family: "chilanka";
+  font-size: 32px;
+}
+
+.bha {
+  font-family: "montserrat";
+  font-size: 16;
+  white-space: nowrap;
+  /* width: max-content; */
+}
+
+/* Search Bar */
+input::placeholder {
+  font-family: "monsterate";
+  font-size: 15;
+}
+
+input {
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+}
+
+.title_text {
+  display: flex;
+  justify-content: end;
+  color: #908f8d;
+  font-size: 15;
+}
+
+.title_content_text {
+  font-weight: 200;
+  color: 41403E;
+  font-size: 19;
+  white-space: nowrap;
+}
+
+.underline {
+  height: 1px;
+  width: 100%;
+  background: #ededed;
+  /* width: fit-content; */
+}
+
+// Account Navigation Icon
+.accNavIcon {
+  width: 20px;
+  height: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+}

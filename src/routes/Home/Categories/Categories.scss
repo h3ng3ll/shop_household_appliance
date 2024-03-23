@@ -1,0 +1,14 @@
+@use "styles/colors" as c;
+
+.categories_div {
+  display: flex;
+}
+
+.category_img {
+  width: 75px;
+  height: 75px;
+}
+
+:hover.category_img {
+  background-color: black;
+}

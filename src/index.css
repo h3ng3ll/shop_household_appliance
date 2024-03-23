@@ -1,0 +1,65 @@
+* {
+  color: #41403e;
+  font-family: "chilanka";
+}
+body {
+  margin: 0;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.block {
+  /* display: "inline-block"; */
+  /* width: 40px;
+  height: 40px; */
+  background-color: blue;
+}
+
+.selectButton {
+  background-color: blue;
+}
+
+.selectButtonChild {
+  background-color: #ebecf0;
+  border-radius: 2em;
+  color: #172b4d;
+  display: "inline-block";
+  font-size: 12;
+  font-weight: "normal";
+  line-height: "1";
+  min-width: 1;
+  padding: 0.16666666666667em 0.5em;
+  text-align: "center";
+}
+
+/* Text Style */
+
+@font-face {
+  font-family: "chilanka";
+  src: url(./assets/fonts/Chilanka-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "montserrat";
+  src: url(./assets/fonts/Montserrat-VariableFont_wght.ttf) format("truetype");
+}
+
+.montserrat {
+  font-family: "montserrat";
+}
+
+.chilanka {
+  font-family: "chilanka";
+}
+
+.inl {
+  display: inline-block;
+}

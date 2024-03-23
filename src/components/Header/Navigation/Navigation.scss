@@ -1,0 +1,19 @@
+@use "styles/colors" as c;
+@use "styles/fonts" as f;
+
+.nav_button {
+  font-family: f.$chilanka;
+  border: none;
+  background: transparent;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.nav_button_active {
+  @extend .nav_button;
+  color: c.$orange-main;
+}
+
+:hover.nav_button {
+  color: c.$orange-main;
+}

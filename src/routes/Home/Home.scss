@@ -1,0 +1,47 @@
+@use "styles/colors" as s;
+@use "styles/fonts/" as f;
+
+.discount_bar {
+  background-color: s.$orange-bg;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 50px;
+  //   height: 400px;
+}
+
+.discount_bar_title {
+  display: inline-block;
+  justify-content: center;
+}
+
+.discount_bar_title h1 {
+  font-size: calc(1.625rem + 4.5vw);
+  margin: 0px;
+}
+.discount {
+  font-family: f.$montserrat;
+  font-size: 15px;
+  padding-bottom: 5px;
+}
+
+.orange {
+  color: s.$orange-main;
+}
+
+.dot_list_class {
+  display: inline-block;
+  // background-color: red;
+  // background: rgb(255, 68, 68);
+  height: 50px;
+  // margin: 50px;
+  border: none;
+  // padding: 50px;
+  // color: red($color: #000000);
+}
+.container_class {
+  // white-space: nowrap;
+  // min-width: 70%;
+  // max-width: 100%;
+}
