@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from "react-i18next";
 import Slider from "react-slick";
+import TransparentButton from "components/TransparentButton";
 
 export default function DiscountBar() {
   const { t } = useTranslation();
@@ -34,6 +35,7 @@ export default function DiscountBar() {
           </span>
           <h1> {t(`${data.title}`)}</h1>
           <h1 className="orange"> {t(`${data.subtitle}`)}</h1>
+          <TransparentButton />
         </div>
       </div>
     );

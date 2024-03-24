@@ -41,6 +41,7 @@ export default i18n.use(initReactI18next).init({
         refigerators: "Refrigerator",
         stoves: "Stoves",
         vacuum_cleaner: "Vacuum Cleaner",
+        shop_now: "shop now",
       },
     },
     ua: {
@@ -74,6 +75,7 @@ export default i18n.use(initReactI18next).init({
         refigerators: "Холодильники",
         stoves: "Плити",
         vacuum_cleaner: "Пилососи",
+        shop_now: "купуй зараз",
       },
     },
   },

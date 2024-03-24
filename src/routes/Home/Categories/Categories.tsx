@@ -30,30 +30,11 @@ export default function Categories() {
 
   function BuildCategories({ category }: { category: Category }) {
     return (
-      <div>
-        <div>
-          {/* <SvgXml xml="https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/debian.svg" /> */}
-          {/* <svg
-            width="100"
-            height="100"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <use xlinkHref={`#${"assets/icons/stove.svg"}`} />
-          </svg> */}
-          {/* <svg xlinkHref={require(`assets/icons/${category.image}.svg`)} /> */}
-          <img
-            className="category_img"
-            src={require(`assets/icons/${category.image}.svg`)}
-          />
-          {/* <LocalSvg,
-            // 
-            
-
-            // alt="img"
-          /> */}
-          {/* <img /> */}
-        </div>
+      <div className="category_block">
+        <img
+          className="category_img"
+          src={require(`assets/icons/${category.image}.svg`)}
+        />
         <h3> {category.description}</h3>
       </div>
     );

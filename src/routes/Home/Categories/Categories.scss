@@ -2,13 +2,21 @@
 
 .categories_div {
   display: flex;
+  justify-content: space-around;
 }
 
 .category_img {
   width: 75px;
   height: 75px;
+  // transition: all 400ms ease-in-out;
 }
-
+.category_block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
+}
 :hover.category_img {
-  background-color: black;
+  filter: brightness(0) saturate(100%) invert(71%) sepia(21%) saturate(3713%)
+    hue-rotate(343deg) brightness(88%) contrast(80%);
 }

@@ -1,5 +1,7 @@
+@use "styles/colors" as c;
+
 * {
-  color: #41403e;
+  color: c.$black;
   font-family: "chilanka";
 }
 body {
@@ -62,4 +64,33 @@ code {
 
 .inl {
   display: inline-block;
+}
+
+.transparent_button {
+  background-color: transparent;
+  display: inline-flex;
+  justify-items: end;
+  align-content: end;
+  padding: 20px 30px;
+  border: 1px solid #41403e;
+  transition: all 0.4s ease-in-out;
+}
+.transparent_button img {
+  position: relative;
+  right: -5px;
+  bottom: 2px;
+  width: 15px;
+  height: 15px;
+  // background-color: white;
+  /* Инвертируем цвета */
+}
+:hover.transparent_button img {
+  filter: invert(100%) brightness(200%);
+}
+:hover.transparent_button {
+  background-color: c.$black;
+}
+
+:hover.transparent_button span {
+  color: c.$white;
 }

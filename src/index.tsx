@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 import ReactDOM from "react-dom/client";
-import "index.css";
+import "index.scss";
 import "i18n/config";
 
 import reportWebVitals from "reportWebVitals";
