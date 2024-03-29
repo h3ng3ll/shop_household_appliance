@@ -1,11 +1,13 @@
 import { useTranslation } from "react-i18next";
 
-export default function TransparentButton() {
+const TransparentButton: React.FC<{ text: string }> = ({ text }) => {
   const { t } = useTranslation();
   return (
     <button className="transparent_button">
-      <span> {t("shop_now").toUpperCase()}</span>
+      <span> {t(text).toUpperCase()}</span>
       <img src={require("assets/icons/arrow_right.svg").default} />
     </button>
   );
-}
+};
+
+export default TransparentButton;

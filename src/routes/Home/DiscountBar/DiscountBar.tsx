@@ -35,7 +35,7 @@ export default function DiscountBar() {
           </span>
           <h1> {t(`${data.title}`)}</h1>
           <h1 className="orange"> {t(`${data.subtitle}`)}</h1>
-          <TransparentButton />
+          <TransparentButton text="shop_now" />
         </div>
       </div>
     );

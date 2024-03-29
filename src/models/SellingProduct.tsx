@@ -1,18 +1,19 @@
 import { Product } from "models/foundations/Product";
+import { Currency } from "./foundations/Currency";
 
 export class SellingProduct extends Product {
-  public image: String;
+  public image: string;
   public isNew: boolean;
   public raiting: number;
 
   constructor(
-    name: String,
-    price: number,
-    image: String,
+    name: string,
+    currency: Currency,
+    image: string,
     isNew: boolean,
     raiting: number
   ) {
-    super(name, price);
+    super(name, currency);
     this.image = image;
     this.isNew = isNew;
     this.raiting = raiting;

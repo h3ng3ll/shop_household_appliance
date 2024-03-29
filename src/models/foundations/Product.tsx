@@ -1,9 +1,11 @@
-export abstract class Product {
-  public price: number;
-  public name: String;
+import { Currency } from "./Currency";
 
-  constructor(name: String, price: number) {
+export abstract class Product {
+  public currency: Currency;
+  public name: string;
+
+  constructor(name: string, currency: Currency) {
     this.name = name;
-    this.price = price;
+    this.currency = currency;
   }
 }

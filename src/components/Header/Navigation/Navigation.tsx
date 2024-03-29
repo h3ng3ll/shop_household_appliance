@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { PageContext, router } from "index";
+import { PageContext } from "index";
 import "components/Header/Navigation/Navigation.scss";
 // import "components/Header/Navigation/Navigation";
 
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+// import { useNavigation, redirect } from "react-router-dom";
+
 // import { useHistory} from "react-router-dom";
 
 export default function Navigation() {
@@ -12,7 +14,7 @@ export default function Navigation() {
   const navigate = useNavigate();
 
   /// УВАЖНО СМОТРИ НА КВАДРАТНЫЕ СКОБКИ !!!
-  const [page, setPage] = useState(useContext(PageContext));
+  const [page, setPage] = useState<String>(useContext(PageContext));
 
   console.log(`value ${page}`);
 
@@ -28,10 +30,10 @@ export default function Navigation() {
     { key: "offers", text: t("offers") },
   ];
 
-  function pushRoute(route: String) {
-    // setPage(route);
-    // console.log(route);
-    // navigate(route );
+  function pushRoute(route: string) {
+    setPage(route);
+    console.log(route);
+    navigate(`../${route}`);
   }
 
   return (

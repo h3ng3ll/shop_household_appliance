@@ -42,6 +42,7 @@ export default i18n.use(initReactI18next).init({
         stoves: "Stoves",
         vacuum_cleaner: "Vacuum Cleaner",
         shop_now: "shop now",
+        view_all: "view all",
       },
     },
     ua: {
@@ -76,6 +77,7 @@ export default i18n.use(initReactI18next).init({
         stoves: "Плити",
         vacuum_cleaner: "Пилососи",
         shop_now: "купуй зараз",
+        view_all: "переглянути все",
       },
     },
   },
