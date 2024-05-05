@@ -20,15 +20,14 @@
   font-size: calc(1.625rem + 4.5vw);
   margin: 0px;
 }
+
 .discount {
   font-family: f.$montserrat;
   font-size: 15px;
   padding-bottom: 5px;
 }
 
-.orange {
-  color: s.$orange-main;
-}
+
 
 .dot_list_class {
   display: inline-block;
@@ -40,8 +39,20 @@
   // padding: 50px;
   // color: red($color: #000000);
 }
-.container_class {
-  // white-space: nowrap;
-  // min-width: 70%;
-  // max-width: 100%;
+
+.padding_container {
+
+  justify-content: center;
+
+  // display: flex;
+  margin: 0 auto;
+  min-width: 25%;
+  max-width: 1200px;
+  // min-width: 50%;
+  grid-template-columns: 85%;
+}
+
+
+.sizedBox {
+  height: 50px;
 }

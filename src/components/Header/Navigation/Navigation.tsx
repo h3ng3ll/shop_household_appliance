@@ -16,7 +16,6 @@ export default function Navigation() {
   /// УВАЖНО СМОТРИ НА КВАДРАТНЫЕ СКОБКИ !!!
   const [page, setPage] = useState<String>(useContext(PageContext));
 
-  console.log(`value ${page}`);
 
   const navigation = [
     {
@@ -32,7 +31,7 @@ export default function Navigation() {
 
   function pushRoute(route: string) {
     setPage(route);
-    console.log(route);
+
     navigate(`../${route}`);
   }
 
@@ -43,7 +42,7 @@ export default function Navigation() {
           onClick={() => {
             pushRoute(nav.key);
           }}
-          className={nav.key === page ? "nav_button_active" : "nav_button"}
+          className={nav.key === page ? "icon_btn nav_button_active" : "icon_btn"}
           key={nav.key}
         >
           {nav.text}

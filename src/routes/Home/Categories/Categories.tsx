@@ -35,7 +35,7 @@ export default function Categories() {
           className="category_img"
           src={require(`assets/icons/${category.image}.svg`)}
         />
-        <h3> {category.description}</h3>
+        <h5> {category.description}</h5>
       </div>
     );
   }

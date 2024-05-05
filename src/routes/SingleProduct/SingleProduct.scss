@@ -1,0 +1,54 @@
+
+@use "styles/colors.scss" as c; 
+
+.product_grid{
+    display: grid;
+    margin: 0 auto ;
+    grid-template-columns: 1fr 1fr;
+}
+
+.img_main{
+    width: 600px;
+    padding: 50px;
+    height: auto;
+}
+
+.split_menu{
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: 4fr 10fr;
+}
+.split_menu_left{
+    padding: 0px 30px;
+}
+.split_menu_right{
+    padding: 0px 30px;
+}
+
+.split_menu_item{
+    padding: 10px;
+    font-size: 20px;
+}
+.active_split_menu_item{
+    background-color: c.$orange-main;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.split_menu_item:hover{
+    color: c.$orange-main
+}
+
+.review_textarea{
+    max-height: 600px;
+
+    max-width: 800px;
+    min-width: 800px;
+}
+
+.write_review_cont h5{
+    padding: 0px;
+    margin: 0px;
+}

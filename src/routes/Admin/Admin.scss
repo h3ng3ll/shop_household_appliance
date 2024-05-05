@@ -1,0 +1,27 @@
+
+
+.grid_cont{
+    display: grid;
+    grid-template-columns: 40%  40%;
+    // grid-auto-rows: 500px;
+    // grid-template-rows: 500px;
+    justify-content: center;
+
+}
+
+
+.grid_cont > div > div{
+    height: 100px;
+    justify-content: center;
+    padding: auto;
+}
+.grid_cont{
+    margin: auto;
+}
+.sub_button{
+    width: 50%;
+}
+// .grid_item {
+//     display: table;
+//     justify-content: center;
+// }

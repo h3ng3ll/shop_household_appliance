@@ -1,0 +1,38 @@
+
+
+.grid_container{
+    // display: grid;
+    grid-template-columns: 1fr 1fr;
+    // max-width: 1200px;
+    // margin: 0% 5%;
+    // justify-content: center;
+    
+    // justify-content: center;
+    
+}
+
+.grid_contact_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+}
+
+.form_input_style_current{
+    font-size: 14px;
+}
+.form_input_style_current:focus{
+    border-color: black;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+#text-area{
+    // width: 600px;
+    max-width: 600px;
+    min-width: 600px;
+    min-height: 150px;
+    max-height: 400px;
+}

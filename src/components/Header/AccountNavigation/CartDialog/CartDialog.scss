@@ -1,0 +1,75 @@
+
+
+@use "styles/colors.scss" as c; 
+
+.modal_container{
+    background-color: rgba(0 , 0 , 0 , 0.5);
+    height: 100%;
+    width: 100%;
+    overflow-y: visible;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    // right: 0; 
+}
+.cart_container{
+    padding: 15px;
+    box-sizing: border-box;
+    width: 400px;
+    position:fixed;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1001;
+    background-color: c.$orange-bg;
+}
+.cart_container_title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart__title_text{
+    color: c.$orange-main
+}
+
+.cart__title_counter{
+    background-color: c.$orange-main;
+    border-radius: 50%;
+    padding: 10px;
+    color: c.$white;
+}
+
+.cart_dialog_item{
+    border: c.$grey_border 1px solid;
+    // justify-content: space-between;
+    padding: 10px;
+}
+.cart_dialog_item_modelname{
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+    font-weight: 200;
+}
+
+.cart_dialog_item_name{
+    font-size: 16px;
+    margin: 2px;
+    padding: 0px;
+}
+.total_price{
+    font-weight: 700;
+}
+
+.checkout_button{
+    background-color: #ce9b58;
+    border: none;
+    box-sizing: border-box ;
+    margin-top: 15px;
+    border-radius: 10.5px;
+    text-align: center;
+}
+
+.checkout_button:hover{
+    background-color: c.$orange-main
+}

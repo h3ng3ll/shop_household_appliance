@@ -1,0 +1,41 @@
+
+
+.grid_container{
+    display: flex;
+  
+    // display: grid;
+    // grid-template-columns: 6fr 1fr 2fr 3fr;
+}
+
+.product_item_style {
+    margin: 3% 0px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 8fr 3fr 3fr 4fr;
+}
+
+#card_trash_container{
+    display: flex;
+    align-items: center;
+}
+
+#addcard_btn{
+    height: 50px;
+    width: 110px;
+    padding: 5px;
+    border-radius: 7.5px;
+    font-size: 14px;
+}
+
+#trash_icon{
+    border: none;
+    background-color: transparent;
+    // width: 50px;
+    margin: 10px;
+}
+
+#trash_icon_btn{
+    // height: 25px;
+    // width: 50px;
+
+}

@@ -1,0 +1,20 @@
+@use "styles/colors" as c;
+
+.product_img {
+    max-width: 200px;
+    min-width: 175px;
+    max-height: 200px;
+    min-height: 175px;
+    background-color: c.$orange-bg;
+    // padding: 15px;
+    // transition: all 400ms ease-in-out;
+  }
+
+.product_price {
+  color: c.$orange-main;
+  
+  // background-color: black;
+}
+
+
+

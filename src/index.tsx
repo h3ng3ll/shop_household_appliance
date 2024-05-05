@@ -4,167 +4,37 @@ import "index.scss";
 import "i18n/config";
 
 import reportWebVitals from "reportWebVitals";
-import {
-  Route,
-  Routes,
-  BrowserRouter,
-  createRoutesFromElements,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 
-import Home from "routes/Home/Home";
-import ErrorPage from "routes/ErrorPage";
-import Contact from "routes/Contact/Contact";
-import Offers from "routes/Offers/Offers";
-import Blog from "routes/Blog/Blog";
-import Shop from "routes/Shop/Shop";
+import AppRouter from "components/AppRouter";
+import UserStore from "store/UserStore";
+import DeviceStore from "store/DeviceStore";
 
 export const PageContext = createContext("home");
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/home",
-    element: <Home />,
-  },
-  {
-    path: "/offers",
-    element: <Home />,
-  },
-]);
-// export const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route
-//       path="/"
-//       element={
-//         <PageContext.Provider value="/">
-//           <Home />
-//         </PageContext.Provider>
-//       }
-//       errorElement={<ErrorPage />}
-//     >
-//       {/* <Route
-//         path="home"
-//         element={
-//           <PageContext.Provider value="home">
-//             <Home />
-//           </PageContext.Provider>
-//         }
-//         errorElement={<ErrorPage />}
-//       />
-//       <Route
-//         path="shop"
-//         element={
-//           <PageContext.Provider value="shop">
-//             <Shop />
-//           </PageContext.Provider>
-//         }
-//         // action={(par, req) => {}}
-//         errorElement={<ErrorPage />}
-//       /> */}
-
-//       {/* <Route
-//         path="offers"
-//         element={
-//           <PageContext.Provider value="offers">
-//             <Offers />
-//           </PageContext.Provider>
-//         }
-//         errorElement={<ErrorPage />}
-//       /> */}
-//       {/* <Route
-//         path="contact"
-//         element={
-//           <PageContext.Provider value="contact">
-//             <Contact />
-//           </PageContext.Provider>
-//         }
-//         errorElement={<ErrorPage />}
-//       /> */}
-//       <Route
-//         path="blog"
-//         element={
-//           <PageContext.Provider value="blog">
-//             <Blog />
-//           </PageContext.Provider>
-//         }
-//       />
-//     </Route>
-//   )
-// );
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <PageContext.Provider value="/">
-              <Home />
-            </PageContext.Provider>
-          }
-          errorElement={<ErrorPage />}
-        />
-        <Route
-          path="home"
-          element={
-            <PageContext.Provider value="/">
-              <Home />
-            </PageContext.Provider>
-          }
-          errorElement={<ErrorPage />}
-        />
-        <Route
-          path="/shop"
-          element={
-            <PageContext.Provider value="shop">
-              <Shop />
-            </PageContext.Provider>
-          }
-          // action={(par, req) => {}}
-          errorElement={<ErrorPage />}
-        />
-        <Route
-          path="/offers"
-          element={
-            <PageContext.Provider value="offers">
-              <Offers />
-            </PageContext.Provider>
-          }
-          errorElement={<ErrorPage />}
-        />
-        <Route
-          path="/contact"
-          element={
-            <PageContext.Provider value="contact">
-              <Contact />
-            </PageContext.Provider>
-          }
-          errorElement={<ErrorPage />}
-        />
-        <Route
-          path="/blog"
-          element={
-            <PageContext.Provider value="blog">
-              <Blog />
-            </PageContext.Provider>
-          }
-        />
-        {/* {/* <Redirect></Redirect>  */}
-      </Routes>{" "}
-    </BrowserRouter>
+interface UserContextType {
+  user : UserStore  ;
+  devices : DeviceStore  ; 
+}
 
-    {/* <React.StrictMode> */}
-    {/* {<RouterProvider router={router}></RouterProvider>} */}
-  </React.StrictMode>
+
+export const Context = createContext({} as UserContextType);
+
+root.render(
+  <Context.Provider value={{
+    user: new UserStore(),
+    devices: new DeviceStore(),
+  }} >
+    <React.StrictMode>
+    <BrowserRouter>
+       <AppRouter/>
+    </BrowserRouter>
+ </React.StrictMode>
+  </Context.Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

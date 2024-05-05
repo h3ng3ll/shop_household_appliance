@@ -1,11 +1,17 @@
+import { Component } from "react";
 import { useTranslation } from "react-i18next";
 
-const TransparentButton: React.FC<{ text: string }> = ({ text }) => {
+
+const TransparentButton: React.FC<{
+  text?: string,
+  useIcon?: boolean,
+  icon?: string
+}> = ({ text, useIcon , icon}) => {
   const { t } = useTranslation();
   return (
     <button className="transparent_button">
-      <span> {t(text).toUpperCase()}</span>
-      <img src={require("assets/icons/arrow_right.svg").default} />
+      {text != null ? <span> {t(text).toUpperCase()}</span> : null}
+      {useIcon === true ? <img src={require("assets/icons/" +  (icon !=null ? icon : "arrow_right") +".svg")} /> : null}
     </button>
   );
 };

@@ -1,0 +1,13 @@
+
+
+.review_container{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.review_img img{
+    width: 50px;
+    
+    border-radius: 50%;
+}
+

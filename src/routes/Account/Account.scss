@@ -1,0 +1,23 @@
+@use "styles/colors.scss" as c; 
+
+
+
+#container{
+    justify-content: center;
+    
+    display: flex;
+}
+
+#form_btn{
+    font-size: 24px;
+}
+#padding {
+    padding: 0px 20%;
+}
+.form_active_btn{
+    color: c.$orange-main
+}
+
+#forgot_passwd{
+    color: c.$orange-main
+}
