@@ -3,10 +3,11 @@ const Router = require("express");
 const router = Router();
 
 const supplier = require("../controllers/supplierController");
+const checkRoleMidleware = require("../middleware/checkRoleMidleware");
 
-router.post("/create", supplier.create);
-router.get("/getOne", supplier.getSupplier);
-router.get("/getAll", supplier.getSuppliers);
-router.delete("/delete", supplier.deleteSupplier);
+router.post("/create", checkRoleMidleware(process.env.ADMIN) ,  supplier.create);
+router.get("/:id", supplier.getSupplier);
+router.post("/getAll", supplier.getSuppliers);
+router.delete("/:id", checkRoleMidleware(process.env.ADMIN) , supplier.deleteSupplier);
 
 module.exports = router;

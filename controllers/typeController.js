@@ -16,28 +16,44 @@ class TypeController {
     return res.json(type);
   }
   async getAll(req, res) {
-    const types = await Type.findAll();
+    const { type_id, name } = req.body;
+
+    let types;
+    if (!type_id && !name) {
+      types = await Type.findAll();
+
+    } else if (type_id) {
+      types = await Type.findAll({ where: { type_id } });
+    }
+    else if (name) {
+      types = await Type.findAll({ where: { name } });
+    } else {
+
+      types = await Type.findAll({ where: { type_id, name } });
+    }
+
     return res.json(types);
   }
+
   async getOne(req, res, next) {
     try {
-      const { id, name } = req.query;
-      let type;
-      if (!id && !name) {
-        next(ApiError.badRequest("Error . Id or name must be provided"));
-      } else if (!id && name) {
-        type = Type.findAll({ where: { name: name } });
-      } else if (id && !name) {
-        type = Type.findAll({ where: { type_id: id } });
-      } else if (id && name) {
-        type = Type.findAll({ where: { name: name, type_id: id } });
-      }
-      res.json(type);
+      const { id} = req.params;
+      
+      const type = await Type.findOne({type_id: id})
+      return res.json(type);
     } catch (e) {
       next(ApiError.badRequest(e.toString()));
     }
   }
-  async delete(req, res) {}
+  async delete(req, res) {
+    const { id} = req.params;
+    const type = await Type.findOne({where: {type_id : id}})
+    await type.destroy();
+
+    return res.json(type)
+   }
+
+
 }
 
 module.exports = new TypeController();

@@ -3,9 +3,12 @@ const { DataTypes } = require("sequelize");
 
 const User = sequelize.define("user", {
   user_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  login: { type: DataTypes.STRING, unique: true },
+  firstname : {type: DataTypes.STRING , allowNull: false },
+  lastname : {type: DataTypes.STRING , allowNull: false },
+  email: {type: DataTypes.STRING , unique: true , allowNull: false},
   password: { type: DataTypes.STRING },
   birthday: { type: DataTypes.DATE },
+  role: {type:DataTypes.ENUM("USER" , "ADMINISTRATOR") , defaultValue: "USER"}
 });
 
 const Product = sequelize.define("product", {
@@ -15,12 +18,13 @@ const Product = sequelize.define("product", {
     autoIncrement: true,
   },
   name: { type: DataTypes.STRING, allowNull: false },
-  product_description: { type: DataTypes.STRING },
+  model_name: {type: DataTypes.STRING , allowNull: false},
   raiting: { type: DataTypes.DOUBLE, defaultValue: 0.0 },
   price: { type: DataTypes.DOUBLE, allowNull: false },
   img: { type: DataTypes.STRING, allowNull: false },
   discount: { type: DataTypes.DOUBLE },
-  release_date: { type: DataTypes.DATE },
+  release_date: { type: DataTypes.DATE , },
+  details: {type: DataTypes.TEXT}
 });
 
 const Basket = sequelize.define("basket", {
@@ -33,7 +37,16 @@ const Basket_Product = sequelize.define("basket_product", {
     autoIncrement: true,
     primaryKey: true,
   },
-  count: { type: DataTypes.INTEGER, allowNull: false },
+});
+
+const Basket_Cart = sequelize.define("basket_cart", {
+  basket_cart_id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  count: { type: DataTypes.INTEGER, defaultValue: 1},
+
 });
 
 const Supplier = sequelize.define("supplier", {
@@ -43,11 +56,16 @@ const Supplier = sequelize.define("supplier", {
     primaryKey: true,
   },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
+  country_of_origin: {type: DataTypes.INTEGER , defaultValue: 6},
+  contact_email: {type: DataTypes.STRING , defaultValue: "supplier@mail.ua"},
+  isActive: {type: DataTypes.BOOLEAN , defaultValue: false}
 });
 
 const Brand = sequelize.define("brand", {
   brand_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
+  country_of_origin: {type: DataTypes.INTEGER  },
+  established_year: {type: DataTypes.INTEGER  },
 });
 
 const Type = sequelize.define("type", {
@@ -87,6 +105,11 @@ const Review = sequelize.define("review", {
   review_date: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 });
 
+const Category = sequelize.define("category" , {
+  category_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+  name: { type: DataTypes.STRING, unique: true, allowNull: false },
+  img : {type: DataTypes.STRING }
+})
 /// Intermediate table
 
 const OrderProduct = sequelize.define("order_product", {
@@ -102,41 +125,82 @@ const ProductSuppliar = sequelize.define("product_type", {
 });
 const UserProduct = sequelize.define("user_product", {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+  count: {type: DataTypes.INTEGER , defaultValue: 1}
 });
 
 const ProductBrand = sequelize.define("product_brand", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
-Type.hasMany(Product);
-Product.belongsTo(Type);
 
-Product.belongsTo(Brand); ////
+Type.hasMany(Product); /////
+Product.belongsTo(Type); ////
+
 Brand.hasMany(Product); ////
-
-// Supplier.belongsTo(Product);
-// Product.hasMany(Supplier);
+Product.belongsTo(Brand); ////
 
 Supplier.hasMany(Product); ////
 Product.belongsTo(Supplier); ////
 
-Product.hasMany(User);
-User.belongsTo(Product);
+User.hasMany(Product)
+Product.belongsTo(User)
 
-User.hasOne(Basket);
-Basket.belongsTo(User);
 
-Basket.hasMany(Basket_Product);
-Basket_Product.belongsTo(Basket);
 
-Basket_Product.belongsTo(Product); /// Product has not any basket id
-Review.belongsTo(Product); /// Review
+User.hasOne(Basket)
+Basket.belongsTo(User)
 
-Order.belongsTo(Product);
-Order.belongsTo(User);
+Basket.hasOne(User)
+User.belongsTo(Basket)
 
-Payment.hasOne(Order);
-Order.belongsTo(Payment);
+//// Good on back 
+
+Payment.belongsTo(Order)
+Order.hasMany(Payment)
+
+Basket_Product.belongsTo(Basket)
+Basket.hasMany(Basket_Product)
+
+Basket_Product.belongsTo(Product)
+Product.hasMany(Basket_Product)
+
+
+Product.belongsTo(Category),
+Category.hasMany(Product),
+
+Basket.belongsTo(Basket_Cart),
+Basket_Cart.hasMany(Basket),
+
+Basket_Cart.belongsTo(Product)
+Product.hasMany(Basket_Cart)
+
+Basket_Cart.belongsTo(Basket)
+Basket.hasMany(Basket_Cart)
+
+Review.belongsTo(Product)
+Product.hasMany(Review);
+// Review.hasMany(Product)
+// Product.belongsTo(Review)
+
+User.belongsTo(Review)
+Review.hasMany(User)
+// Product.hasMany(User);
+// User.belongsTo(Product);
+
+// User.hasOne(Basket);
+// Basket.belongsTo(User);
+
+// Basket.hasMany(Basket_Product);
+// Basket_Product.belongsTo(Basket);
+
+// Basket_Product.belongsTo(Product); /// Product has not any basket id
+// Review.belongsTo(Product); /// Review
+
+// Order.belongsTo(Product);
+// Order.belongsTo(User);
+
+// Payment.hasOne(Order);
+// Order.belongsTo(Payment);
 
 // Product.belongsToMany(Type, { through: ProductType });
 // Product.belongsToMany(Supplier, { through: ProductSuppliar });
@@ -203,7 +267,9 @@ module.exports = {
   Brand,
   Type,
   Supplier,
+  Category,
   Basket_Product,
+  Basket_Cart,
   // BrandTypeSupplier,
   ProductBrand,
   UserProduct,

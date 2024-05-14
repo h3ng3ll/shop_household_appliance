@@ -1,10 +1,11 @@
 const Router = require("express");
 const router = new Router();
 const typeController = require("../controllers/typeController");
+const checkRole = require("../middleware/checkRoleMidleware")
 
-router.get("/getOne", typeController.getOne);
-router.get("/getAll", typeController.getAll);
-router.post("/create", typeController.create);
-router.delete("/delete", typeController.delete);
+router.get("/:id", typeController.getOne);
+router.post("/getAll", typeController.getAll);
+router.post("/create", checkRole(process.env.ADMIN) , typeController.create);
+router.delete("/:id", checkRole(process.env.ADMIN) , typeController.delete);
 
 module.exports = router;
