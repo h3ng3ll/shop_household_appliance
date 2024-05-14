@@ -1,11 +1,15 @@
+import { Category } from "models/Category";
 import React from "react";
-import { Category } from "models/foundations/Category";
+
+
 import { useTranslation } from "react-i18next";
-import { SvgXml } from "react-native-svg";
+import { useNavigate } from "react-router-dom";
 import "routes/Home/Categories/Categories.scss";
+import { SHOP_ROUTE } from "utils/consts";
 
 export default function Categories() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const description = [
     t("washing_machines"),
@@ -28,14 +32,18 @@ export default function Categories() {
     )
   );
 
+    function onTap () {
+      navigate(SHOP_ROUTE);
+    }
+
   function BuildCategories({ category }: { category: Category }) {
     return (
-      <div className="category_block">
+      <div onClick={() =>onTap()}className="category_block">
         <img
           className="category_img"
           src={require(`assets/icons/${category.image}.svg`)}
         />
-        <h5> {category.description}</h5>
+        <h5> {category.name}</h5>
       </div>
     );
   }

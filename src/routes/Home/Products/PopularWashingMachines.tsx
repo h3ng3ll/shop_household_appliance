@@ -22,7 +22,7 @@ export default function PopularWashingMachines () {
     {/* Do not wrap Slider any div */}
         <Slider  {...settings}>
         {
-            products.map((product , index ) => ProductComponent(product))
+            products.map((product , index ) => <ProductComponent product={product}/>)
         }
         </Slider>
     </div>

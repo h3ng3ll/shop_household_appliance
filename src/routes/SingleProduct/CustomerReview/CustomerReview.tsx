@@ -22,9 +22,9 @@ const  CustomerReview : React.FC<{review: Review}>  = ({review }) => {
             <div>
                 <div><StarRate/></div>
                 
-                <div> {review.user.name} {review.user.surname} {format(review.user.birthday , "dd/MM/yyyy" , {
+                <div> {review.user.name} {review.user.surname} { review.user.birthday != null ? format(review.user.birthday , "dd/MM/yyyy" , {
                     "locale" : t("locale") == "ua" ?  uk : enAU 
-                })}</div>
+                } ) : null}</div>
                 
                 {/* <Moment add={{ hours: 12 }}>{date}</Moment> */}
                 <div> {review.comment}</div>

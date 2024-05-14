@@ -101,6 +101,7 @@ code {
   border: 1px solid #41403e;
   transition: all 0.4s ease-in-out;
 }
+
 .transparent_button img {
   position: relative;
   right: -5px;
@@ -120,6 +121,30 @@ code {
 :hover.transparent_button span {
   color: c.$white;
 }
+//// deTransparentButton
+.transparent_button_fill{
+  background-color: c.$black;
+  color: c.$white;
+}
+
+.transparent_button_fill span{
+  color: c.$white;
+}
+.transparent_button_fill img{
+  filter: invert(100%) brightness(200%);
+}
+
+:hover.transparent_button_fill img {
+  filter: none;
+}
+:hover.transparent_button_fill {
+  background-color: c.$white;
+}
+
+:hover.transparent_button_fill span {
+  color: c.$black;
+}
+
 
 .orange {
   color: c.$orange-main;
@@ -190,7 +215,7 @@ code {
   font-size: 18px;
   width:  100%;
   padding: 20px 30px;
-  border: 1px solid c.$black;
+  // border: 1px solid c.$black;
   // transition: all 0.4s ease-in-out;
 }
 .form_button:hover{

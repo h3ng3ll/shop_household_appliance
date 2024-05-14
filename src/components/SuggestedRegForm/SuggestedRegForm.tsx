@@ -4,10 +4,13 @@ import { useTranslation } from "react-i18next"
 import { useState } from "react"
 // import "index.scss"
 import "./SuggestedRegForm.scss"
+import { useNavigate } from "react-router-dom"
+import { ACCOUNT_ROUTE } from "utils/consts"
 export default function SuggestedRegForm() {
     const { t } = useTranslation()
+    const navigate = useNavigate();
 
-    const [email, setEmail] = useState();
+    const [email, setEmail] = useState<string>();
     const [password, setPass] = useState();
     const [repeatPassword, setRepPass] = useState();
 
@@ -16,7 +19,7 @@ export default function SuggestedRegForm() {
     const [isFocusedRepPassword, setIsFocusedRepPass] = useState(false);
 
     function onSubmit() {
-
+        navigate(ACCOUNT_ROUTE);
     }
 
     function onChange(event: ChangeEvent<HTMLInputElement>) {
@@ -39,7 +42,7 @@ export default function SuggestedRegForm() {
                     placeholder={t("enter_your_email_address")}
                     type="text"
                     value={email}
-                    onChange={onChange} />
+                    onChange={(e) => setEmail(e.target.value)} />
                 <input
                     onFocus={() => setIsFocusedPassword(true)}
                     onBlur={() => setIsFocusedPassword(false)}
@@ -57,7 +60,7 @@ export default function SuggestedRegForm() {
                     value={repeatPassword}
                     onChange={onChange} />
 
-                <input className="form_button" type="submit" value={t("register_it_now").toUpperCase()} />
+                <input onClick={() => onSubmit()} className="form_button" type="submit" value={t("register_it_now").toUpperCase()} />
             </form>
         </div>
     )

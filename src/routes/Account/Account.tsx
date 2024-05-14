@@ -2,77 +2,82 @@ import Header from "components/Header/Header";
 import RouterHeader from "components/RouterHeader/RouterHeader";
 
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Account.scss"
 import Tail from "components/Tail/Tail";
+import RegisterForm from "./RegisterForm";
+import LoginForm from "./LoginForm";
+import { ADMIN } from "utils/consts";
+import { AdminUser } from "models/AdminUser";
+import { CommonUser } from "models/CommonUser";
+import { login, register } from "http/userApi";
+import { Context } from "index";
+import { User } from "models/foundations/User";
+import { observer } from "mobx-react-lite";
 
-export default function Account() {
+
+export async function onAuthorization(
+    email: string,
+    password: string,
+    repeatPassword?: string,
+    fullname?: string
+) {
+
+
+    try {
+        if (email == "" || password == "") {
+            throw("email or password field is empty")
+        };
+        
+    
+        let userData
+        let res : Record<string , any> = []
+        
+        if (repeatPassword == null && fullname == null) {
+            /// login
+    
+            res  = await login(email, password);
+        } else {
+            /// register
+    
+            let names = fullname!.split(" ");
+            if (!names[1]) {
+                throw("You must separate values like that 'Name Surname'")
+                
+            }
+            if (repeatPassword != password) {
+                throw("fullname or passwords not maching")
+                
+            }
+            res  = await register(email, password, names[0], names[1]);
+    
+        }
+    
+        if (res['role'] === ADMIN) {
+            userData = AdminUser.fromJson(res);
+        } else {
+            userData = CommonUser.fromJson(res);
+        }
+      
+    
+        return userData;
+    } catch (e) {
+        throw(e)
+    }
+
+}
+
+const Account =  observer(() =>  {
 
     const { t } = useTranslation()
-    const [isLogin, setIsLogin] = useState<boolean>();
+    const [isLogin, setIsLogin] = useState<boolean>(false);
 
 
-    function loginForm() {
-        return (
-            <>
-                <h5> {t("log_in_with_email")}</h5>
-                <input className="form_input_text_style" placeholder={t("enter_email_address")} type="text" />
-                <input className="form_input_text_style" placeholder={t("enter_password")} type="text" />
-
-                <div style={{ display: "flex", justifyContent: "space-between", padding: "20px 0px " }}>
-
-                    <span>
-                        <input type="checkbox" name="" id="" />
-                        {t("remember_me")}
-                    </span>
-
-                    <span>
-                        <button id="forgot_passwd" className="icon_btn">
-                            {t("forgot_password") + "?"}
-
-                        </button>
-                    </span>
-                </div>
-
-                <button className="form_button"> {t("log_in").toUpperCase()}</button>
-            </>
-        )
-    }
-
-    function register_form() {
-        return (
-            <>
-                <h5> {t("sign_up_with_email")}</h5>
-                <input className="form_input_text_style" placeholder={t("your_full_name")} type="text" />
-                <input className="form_input_text_style" placeholder={t("your_email_address")} type="text" />
-                <input className="form_input_text_style" placeholder={t("set_your_password")} type="text" />
-                <input className="form_input_text_style" placeholder={t("retype_your_password")} type="text" />
-
-                <div style={{ display: "flex", justifyContent: "space-between", padding: "20px 0px " }}>
-
-                    <span>
-                        <input type="checkbox" name="" id="" />
-                        {t("remember_me")}
-                    </span>
-
-                    <span>
-                        <button id="forgot_passwd" className="icon_btn">
-                            {t("forgot_password") + "?"}
-
-                        </button>
-                    </span>
-                </div>
-
-                <button className="form_button"> {t("sign_up").toUpperCase()}</button>
-
-            </>
-        )
-    }
 
 
     function BuildForm() {
         return (
-            <div style={{ maxWidth: "1100px", margin: "0px auto" }} >
+            <div className="max_size" style={{ margin: "0px auto" }} >
 
                 <div id="container">
                     <h3 className="title_form_container">
@@ -84,7 +89,6 @@ export default function Account() {
                             {t("sign_up").toUpperCase()}
                         </button>
 
-
                     </h3>
 
                 </div>
@@ -94,7 +98,7 @@ export default function Account() {
                 <div id="padding">
 
                     {
-                        isLogin ? loginForm() : register_form()
+                        isLogin ? <LoginForm /> : <RegisterForm />
                     }
                 </div>
 
@@ -108,6 +112,9 @@ export default function Account() {
 
         <BuildForm />
 
-        <Tail/>
+        <Tail />
     </>
-}
+    
+})
+
+export default Account;

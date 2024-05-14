@@ -4,9 +4,12 @@ import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from "react-i18next";
 import Slider from "react-slick";
 import TransparentButton from "components/TransparentButton";
+import { useNavigate } from "react-router-dom";
+import { SHOP_ROUTE } from "utils/consts";
 
 export default function DiscountBar() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   interface CarouselItem {
     img: string;
@@ -35,13 +38,11 @@ export default function DiscountBar() {
           </span>
           <h1> {t(`${data.title}`)}</h1>
           <h1 className="orange"> {t(`${data.subtitle}`)}</h1>
-          <TransparentButton text="shop_now" useIcon/>
+          <TransparentButton  onClick={() => navigate(SHOP_ROUTE)} text="shop_now" useIcon/>
         </div>
       </div>
     );
   }
-
-  // let img = require("assets/icons/washing-machine.svg");
 
   var settings = {
     dots: true,

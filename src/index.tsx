@@ -9,6 +9,7 @@ import { BrowserRouter} from "react-router-dom";
 import AppRouter from "components/AppRouter";
 import UserStore from "store/UserStore";
 import DeviceStore from "store/DeviceStore";
+import FilterStore from "store/FilterStore";
 
 export const PageContext = createContext("home");
 
@@ -19,7 +20,10 @@ const root = ReactDOM.createRoot(
 interface UserContextType {
   user : UserStore  ;
   devices : DeviceStore  ; 
+  filter : FilterStore ; 
 }
+
+
 
 
 export const Context = createContext({} as UserContextType);
@@ -28,6 +32,7 @@ root.render(
   <Context.Provider value={{
     user: new UserStore(),
     devices: new DeviceStore(),
+    filter: new FilterStore()
   }} >
     <React.StrictMode>
     <BrowserRouter>

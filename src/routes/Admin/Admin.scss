@@ -1,17 +1,17 @@
 
+@use "styles/colors" as c; 
 
 .grid_cont{
     display: grid;
     grid-template-columns: 40%  40%;
-    // grid-auto-rows: 500px;
-    // grid-template-rows: 500px;
+
     justify-content: center;
 
 }
 
 
 .grid_cont > div > div{
-    height: 100px;
+    height: 140px;
     justify-content: center;
     padding: auto;
 }
@@ -19,9 +19,38 @@
     margin: auto;
 }
 .sub_button{
-    width: 50%;
+    width: 25%;
 }
-// .grid_item {
-//     display: table;
-//     justify-content: center;
-// }
+.log_out_btn{
+    background-color: c.$orange-main;
+    border: none;
+}
+.log_out_btn:hover{
+    background-color: c.$orange-main-s;
+}
+
+.add_remove_form {
+    display: flex ;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.add_remove_form input{
+    width: 60% ;
+}
+
+.add_remove_form button{
+    width: 15% ;
+    height: 30px;
+    padding: 0;
+    background-color: c.$orange-main;
+    border: none;
+}
+
+.add_remove_form button:hover{
+    background-color: c.$orange-main-s;
+    
+}
+
+#remove_btn{
+    background-color: c.$black;
+}

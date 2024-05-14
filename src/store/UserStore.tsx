@@ -1,68 +1,89 @@
 import { AdminUser } from "models/AdminUser"
 import { User } from "models/foundations/User"
 
-import {makeAutoObservable} from "mobx"
+import { makeAutoObservable } from "mobx"
 import { Product } from "models/Product"
+import { addProductToBasket, addProductToCart, deleteProductFromBasket, deleteProductFromCart } from "http/productApi"
+import { BasketProduct } from "models/BasketProduct"
 
 export default class UserStore {
 
-    private _isAuth : boolean 
-    private _user : User
+    private _isAuth: boolean
+    private _user?: User
 
     /// add from db via uids
-    private _wishList : Product[]
-    private _basket : Product[];
+    private _wishList: Product[]
+    private _cartItems: Product[];
 
-    constructor () {
-        this._isAuth = true 
-        this._user = new AdminUser(1 , "test@gmail.com" , new Date("2004-10-10") , 1 , "alex" , "London" , "https://scontent.fiev8-2.fna.fbcdn.net/v/t39.30808-6/274932157_491155372497552_796562318343347496_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=0sEqve8SgCYQ7kNvgHIyK-F&_nc_ht=scontent.fiev8-2.fna&oh=00_AfCZRF5_PnplIvqCZK9TkCCAwxYDKQGH_EqTo-qL1K0PNw&oe=663D6E48")
-        this._wishList = [
-            new Product("Пральна машина" , "https://s.ek.ua/jpg_zoom1/2390206.jpg" , true , 2.4 , 1 , 1 , 8 , 4 , 1 , "WAN 28263 UA" , 17000),
-            new Product("Пральна машина" , "https://s.ek.ua/jpg_zoom1/2390206.jpg" , true , 1.6 , 2 , 1 , 8 , 4 , 1 , "WAN 28263 UA" , 17000),
-            new Product("Пральна машина" , "https://s.ek.ua/jpg_zoom1/2390206.jpg" , true , 2.0 , 3 , 1 , 8 , 4 , 1 , "WAN 28263 UA" , 17000),
-            new Product("Пральна машина" , "https://s.ek.ua/jpg_zoom1/2390206.jpg" , true , 5.0 , 4 , 1 , 8 , 4 , 1 , "WAN 28263 UA" , 17000),
-        ]
-
-        this._basket = [
-            new Product("Пральна машина" , "https://s.ek.ua/jpg_zoom1/2390206.jpg" , true , 2.4 , 1 , 1 , 8 , 4 , 1 , "WAN 28263 UA" , 17000),
-            new Product("Пральна машина" , "https://s.ek.ua/jpg_zoom1/2390206.jpg" , true , 1.6 , 1 , 1 , 8 , 4 , 1 , "WAN 28263 UA" , 17000),
-            new Product("Пральна машина" , "https://s.ek.ua/jpg_zoom1/2390206.jpg" , true , 2.0 , 1 , 1 , 8 , 4 , 1 , "WAN 28263 UA" , 17000),
-            new Product("Пральна машина" , "https://s.ek.ua/jpg_zoom1/2390206.jpg" , true , 5.0 , 1 , 1 , 8 , 4 , 1 , "WAN 28263 UA" , 17000),
-        ]
+    constructor() {
+        this._isAuth = false
+        this._wishList = []
+        this._cartItems = []
         makeAutoObservable(this)
     }
 
 
-    public addToCart(product : Product) {
-        // use DB
-    }
-    public removeFromCart(product : Product) {
-        // use DB
-    }
-
-    public setIsAuth(isAuth : boolean) {
-        this._isAuth = isAuth 
+    public async addToCart(productId : number) {
+        const cartItemRow = await addProductToCart(this._user?.basket_id! , productId)
+        const cartItem = Product.fromJson(cartItemRow)
+        this._cartItems.push(cartItem)
     }
 
-    public setUser(user : User) {
+    public async removeFromCart(productId : number) {
+        await deleteProductFromCart(this._user?.basket_id! , productId)
+        const cartList = this._wishList.filter((value) => value.product_id !== productId); 
+        this.setCart(cartList)
+    }
+
+    public async  addToBasket( productId : number ) {
+        const basketItemRow = await addProductToBasket(this._user?.basket_id! , productId)
+        const basketItem = Product.fromJson(basketItemRow)
+        this._wishList.push(basketItem)
+    }
+    
+    public async removeFromBasket(productId: number) {
+        await deleteProductFromBasket(this._user?.basket_id! , productId)
+        const wishList = this._wishList.filter((value) => value.product_id !== productId); 
+        this.setWishList(wishList)
+    }
+
+    public get user(): User | undefined {
+        return this._user
+    }
+    public setUser(user: User) {
         this._user = user
     }
 
-    public get isAuth () {
+
+    public get isAuth() {
         return this._isAuth
     }
 
-    public get user () {
-        return this._user
+    public setIsAuth(isAuth: boolean) {
+        this._isAuth = isAuth
     }
 
-    public get wishList () {
+    public get wishList() {
         return this._wishList
     }
 
-      /// basket or cart
-    public   get basket () {
-        return this._basket
+    setWishList(wishList : Product[]) {
+        this._wishList = wishList;
+    }
 
+    /// basket or cart
+    public get cart() {
+        return this._cartItems
+
+    }
+
+    setCart(basketItems : Product[]) {
+        this._cartItems = basketItems;
+    }
+
+    public logOut() {
+        this._user = undefined;
+        this._isAuth = false;
+        localStorage.removeItem("token")
     }
 }

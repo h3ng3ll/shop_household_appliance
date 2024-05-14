@@ -1,10 +1,8 @@
 
 
-import { MouseEvent, useContext, useState } from "react";
+import { MouseEvent, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Dialog } from 'primereact/dialog';
-// import "./CardDialog.scss";
 import "./CartDialog.scss"
 import cart from "assets/icons/cart.svg";
 import { Context } from "index";
@@ -12,6 +10,8 @@ import CartDialogItem from "./CartDaialogItem";
 import UserStore from "store/UserStore";
 import { useNavigate } from "react-router-dom";
 import { ACCOUNT_ROUTE } from "utils/consts";
+import { getAllProductsFromCart } from "http/productApi";
+import { Product } from "models/Product";
 export default function CartDialog() {
 
     const { t } = useTranslation();
@@ -20,12 +20,29 @@ export default function CartDialog() {
     const [isOpen, openDialog] = useState(false);
 
     const user : UserStore   = useContext(Context).user;
-    const basket  = user.basket
+    const basket  = user.cart
 
     let totalPrice = 0.0;
+    basket.map((cart) => { totalPrice += cart.price;})
 
-    basket.map((cart) => {
-        totalPrice += cart.price;
+    useEffect(( ) => {
+        if(user.user){
+            if(user.user?.basket_id){
+                getAllProductsFromCart(user.user?.basket_id).then((products) => {
+                    const productsList: Product[] = [];
+        
+                    (products as Array<Record<string, any>>).map((product) => {
+                        const objType = Product.fromJson(product);
+                        productsList.push(objType);
+                    });
+        
+                    user.setCart(productsList);
+        
+                })
+            }
+           
+        }
+        
     })
 
     function handleModalClick(event: MouseEvent) {
@@ -36,6 +53,7 @@ export default function CartDialog() {
     function onCheckoutClick(evnet: MouseEvent) {
 
     }
+
 
     function ModalDialog() {
         return (

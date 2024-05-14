@@ -1,5 +1,4 @@
-import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import { Currency } from "./foundations/Currency";
+import Currency from "./foundations/Currency";
 
 export class CurrencyUSD extends Currency {
   async convertCurrency(currency: Currency): Promise<Currency> {
@@ -14,7 +13,7 @@ export class CurrencyUSD extends Currency {
     throw new Error("Method not implemented.");
   }
 
-  constructor(price: Double) {
+  constructor(price: number) {
     super("UAH", "₴", price);
   }
 }

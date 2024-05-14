@@ -1,18 +1,25 @@
 import { User } from "./foundations/User";
 
 import { COMMON_USER } from "utils/consts"
+import { UserData } from "./interfaces/UserData";
 
-class CommonUser extends User {
+export class CommonUser extends User {
 
     constructor(
-        user_id: number,
-        email: string,
-        birthday: Date,
-        basket_id: number,
-        name : string , 
-        surname :string,
-        avatar_img? : string
+        userData : UserData
     ) {
-        super(user_id, email, COMMON_USER, birthday, basket_id , name , surname , avatar_img)
+        super(userData,  COMMON_USER)
+    }
+
+    static fromJson (json : Record<string , any>) : CommonUser {
+        return new CommonUser({
+            user_id: json['user_id'],
+            email: json['email'],
+            birthday : new Date(json['birthday']),
+            basket_id: json['basket_id'],
+            name : json['firstname'],
+            surname : json['lastname'],
+            avatar_img : json['avatar_img'],
+        })
     }
 }

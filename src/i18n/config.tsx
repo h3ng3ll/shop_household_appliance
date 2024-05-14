@@ -1,11 +1,13 @@
 import i18n from "i18next";
 
 import { initReactI18next } from "react-i18next";
-
-export default i18n.use(initReactI18next).init({
-  lng: "en",
-  fallbackLng: "en",
-  debug: true,
+export default i18n.use(initReactI18next)
+.
+use(initReactI18next)
+.init({
+  lng: "ua",
+  fallbackLng: "ua",
+  debug: false,
   interpolation: {
     escapeValue: false,
   },
@@ -157,9 +159,32 @@ export default i18n.use(initReactI18next).init({
         your_review : "Your Review",
         write_your_review_here :"Write Your Review Here",
         upload_images : "Upload Images",
-        // contact_information : "Your Profile"
-
-
+        log_out : "Log Out",
+        types : "Types",
+        big_hs : "Big House Suppliance",
+        small_hs : "Big House Suppliance",
+        climate_hs : "Climate House Suppliance",
+        kitchen_supplience : "Kitchen Supplience" , 
+        audio_video_sup :"Audio Video Suppliance" , 
+        beaty_and_health : "Beauty And Health",
+        accessories : "Accessories" ,
+        add : "Add",
+        remove : "Remove",
+        add_or_remove_type :  "Add/Remove Type",
+        add_or_remove_brand : "Add/Remove Brand",
+        add_or_remove_supplier : "Add/Remove Type Supplier",
+        add_or_remove_category : "Add/Remove Type Category",
+        category : "Category",
+        fill_field_correctly : "Fill textfield correctly ! It must not be empty",
+        item_exists : "Item Exists",
+        item_not_exists : "Item Not Exists",
+        item_added : "Item added",
+        item_removed : "Item removed",
+        details : "Details",
+        added_product : "Product has been added",
+        clear : "Clear",
+        reset : "Reset",
+       
       },
     },
     ua: {
@@ -253,7 +278,7 @@ export default i18n.use(initReactI18next).init({
         write_your_message_here: "Напишіть Ваше повідомлення Тут",
         write_your_subject_here: "Напишіть Вашу Тему Тут",
         submit: "Відправити",
-        account: "Аккаунт",
+        account: "Акаунт",
         log_in: "Вхід",
         sign_up: "Реєстрація",
         log_in_with_email: "Вхід За Допомогою Пошти",
@@ -308,7 +333,33 @@ export default i18n.use(initReactI18next).init({
         your_email : "Ваша Пошта",
         your_review : "Ваш відгук",
         write_your_review_here :"Пишіть тут ваш відгук",
-        upload_images :"Прикріпіть зображення"
+        upload_images :"Прикріпіть зображення",
+        log_out : "Вийти з аккаунту",
+        big_hs : "Велика Побутова Техніка",
+        small_hs : "Мала Побутова Техніка",
+        climate_hs : "Кліматична Техніка",
+        kitchen_supplience : "Кохонні Принадлежності" , 
+        audio_video_sup :"Аудіо Відео Принадлежності" , 
+        beaty_and_health : "Здров'я та Краса",
+        accessories : "Аксесуари" ,
+        add : "Додати",
+        remove : "Видалити",
+        add_or_remove_type :  "Додати/Видалити Тип",
+        add_or_remove_brand : "Додати/Видалити Бренд",
+        add_or_remove_supplier : "Видалти/Видалити Постачальника",
+        add_or_remove_category : "Видалти/Видалити Категорію",
+        category : "Категорія",
+        fill_field_correctly : "Заповність поле правильно . Поле не повинно мати пусті значення",
+        item_exists : "Елемент уже існує",
+        item_not_exists : "Елемента не існує",
+        item_added : "Елемент добавлений",
+        item_removed : "Елемент видалений",
+        details : "Деталі",
+        added_product : "Продукт додано",
+        clear : "Очистить",
+        types : "Типи",
+        reset : "Скинути",
+
       },
     },
   },

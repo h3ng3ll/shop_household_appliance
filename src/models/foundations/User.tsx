@@ -1,33 +1,33 @@
+import { UserData } from "models/interfaces/UserData"
+
+
 
 export abstract class User {
 
     public user_id: number
     public email: string
     public role: string
-    public birthday: Date
-    public basket_id : number
-    public name : string
-    public surname : string
+    public birthday? : Date
+    public basket_id? : number
+    public name? : string
+    public surname? : string
     public avatar_img? : string
 
+
     constructor(
-        user_id: number,
-        email: string,
-        role: string,
-        birthday: Date,
-        basket_id : number,
-        name : string , 
-        surname : string,
-        avatar_img? : string, 
+        userData : UserData,
+        role : string 
     ) {
-        this.birthday = birthday;
         this.role = role;
-        this.email = email;
-        this.user_id = user_id;
-        this.basket_id = basket_id;
-        this.name = name ; 
-        this.surname = surname;
-        this.avatar_img = avatar_img
+        this.email = userData.email;
+        this.user_id = userData.user_id;
+        this.basket_id = userData.basket_id;
+        this.name = userData.name ; 
+        this.surname = userData.surname;
+        this.avatar_img = userData.avatar_img
     }
+
+    
+    
 
 }

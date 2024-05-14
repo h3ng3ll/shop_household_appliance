@@ -74,7 +74,7 @@ export default function Tail() {
                         buildTags(quick_links, (route: string) => {
                             console.log("route: " + route)
                             /// navigate to route
-                        })
+                        },  )
                     }
                 </div>
 
